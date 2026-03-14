@@ -1,0 +1,42 @@
+Test Summary Report
+
+Date: March 14 2026
+Tester: Megha Chandran P
+Website: SauceDemo
+
+1. Executive Summary
+Total 50 test cases were run. 45 out of 50 test cases passed (90%) and 5 out of 50 test cases failed (10%). The application is stable in basic user flows but has a few issues in sorting and checkout.
+
+2. Test Metrics
+|Module|Total|Passed|Failed|Pass %
+|------------------------------------------------
+|Login|10|9|1|90%
+|Products|10|9|1|0%
+|Cart|10|9|1|90%
+|Checkout|12|10|2|83%
+|Menu & Navigation|8|8|0|100%
+|TOTAL|50|45|5|90%
+
+3. Defect Summary
+|Severity|Count|Status
+|----------------------------
+|Critical|2|Open
+|Major|1|Open
+|Minor|2|Open
+
+4. Key Findings
+  -Login functionality is working for valid users
+  -Add to cart and remove are working
+  -Single set of items checkout flow work
+  *Sorting functionality has major bug in sorting by price
+  *Tax calculation of items is wrong due to quantity exceeding limit
+  *UI bug: masking of password doesn't work
+
+5. Recommendations
+  -HIGH: Sorting by price functionality needs to be fixed
+  -HIGH: Tax calculation for bulk items needs to be fixed
+  -MEDIUM: Empty cart message needs to be added
+  -LOW: Masking of password needs to be fixed
+
+6. Conclusion
+Application is not fully stable. Some basic user flows work but issues in sorting and tax calculation must be addressed before application release to production.

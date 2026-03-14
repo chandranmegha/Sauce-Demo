@@ -1,0 +1,70 @@
+Test Plan: SauceDemo E-Commerce Website
+
+
+ Date : March 14 2026 
+ Author : Megha Chandran P
+ Website : https://www.saucedemo.com/ 
+
+ 1. Introduction
+
+1.1 Objective
+To thoroughly test the SauceDemo e-commerce website's core functionalities including user authentication, product browsing, shopping cart operations, and checkout process.
+
+1.2 Scope
+
+In Scope:
+- User Login/Logout functionality
+- Product listing and sorting
+- Add/Remove items from cart
+- Cart badge and cart page validation
+- Checkout process
+- Error messages and validation
+
+Out of Scope:
+- Performance testing
+- Security testing
+- Mobile responsiveness
+- Database testing
+
+ 2. Testing Strategy
+
+2.1 Testing Levels
+| Level | Description 
+|----------------------
+| Functional Testing | Verify features work as expected 
+| UI Testing | Check layout and visual elements 
+| Negative Testing | Test with invalid inputs 
+| Regression Testing | Re-test after bug fixes 
+
+2.2 Test Deliverables
+- Test Cases 
+- Bug Reports
+- Test Summary Report
+- Automation Scripts
+- API Test Collection
+
+  3. Test Environment
+
+OS: Windows 10/11
+Browser: Chrome (latest)
+RAM: 8GB minimum
+Internet: Required
+
+  4. Schedule
+
+| Phase | Duration 
+|-------------------
+| Test Planning | 4 hours 
+| Test Case Development | 8 hours 
+| Test Execution | 8 hours 
+| Bug Reporting | 4 hours 
+| Automation | 8 hours 
+| Documentation | 4 hours 
+
+  5. Risks
+
+| Risk | Mitigation 
+|------------------
+| Application downtime | Test during stable hours 
+| Browser issues | Test on multiple browsers 
+| Time constraints | Prioritize critical tests 

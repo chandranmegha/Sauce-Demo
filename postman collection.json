@@ -1,0 +1,350 @@
+{
+  "info": {
+    "name": "E-Commerce API Testing",
+    "description": "Complete API tests for e-commerce functionality",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🔐 Authentication",
+      "item": [
+        {
+          "name": "Login - Success",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has token', function() {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('token');",
+                  "    pm.expect(jsonData.token).to.be.a('string');",
+                  "});",
+                  "",
+                  "pm.test('Response time is less than 500ms', function() {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(500);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"cityslicka\"\n}"
+            },
+            "url": {
+              "raw": "https://reqres.in/api/login",
+              "protocol": "https",
+              "host": ["reqres", "in"],
+              "path": ["api", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login - Failure",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 400', function() {",
+                  "    pm.response.to.have.status(400);",
+                  "});",
+                  "",
+                  "pm.test('Error message is present', function() {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('error');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"eve.holt@reqres.in\"\n}"
+            },
+            "url": {
+              "raw": "https://reqres.in/api/login",
+              "protocol": "https",
+              "host": ["reqres", "in"],
+              "path": ["api", "login"]
+            }
+          }
+        },
+        {
+          "name": "Register - Success",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has ID and token', function() {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData).to.have.property('token');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"pistol\"\n}"
+            },
+            "url": {
+              "raw": "https://reqres.in/api/register",
+              "protocol": "https",
+              "host": ["reqres", "in"],
+              "path": ["api", "register"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "👥 Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has data array', function() {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.data).to.be.an('array');",
+                  "    pm.expect(jsonData.data.length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test('User has required fields', function() {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data.length > 0) {",
+                  "        var user = jsonData.data[0];",
+                  "        pm.expect(user).to.have.property('id');",
+                  "        pm.expect(user).to.have.property('email');",
+                  "        pm.expect(user).to.have.property('first_name');",
+                  "        pm.expect(user).to.have.property('last_name');",
+                  "    }",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://reqres.in/api/users?page=2",
+              "protocol": "https",
+              "host": ["reqres", "in"],
+              "path": ["api", "users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has user data', function() {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.data).to.be.an('object');",
+                  "    pm.expect(jsonData.data.id).to.eql(2);",
+                  "    pm.expect(jsonData.data.email).to.be.a('string');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://reqres.in/api/users/2",
+              "protocol": "https",
+              "host": ["reqres", "in"],
+              "path": ["api", "users", "2"]
+            }
+          }
+        },
+        {
+          "name": "User Not Found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 404', function() {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "https://reqres.in/api/users/23",
+              "protocol": "https",
+              "host": ["reqres", "in"],
+              "path": ["api", "users", "23"]
+            }
+          }
+        },
+        {
+          "name": "Create User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 201', function() {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test('Response has ID', function() {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('id');",
+                  "    pm.expect(jsonData).to.have.property('name');",
+                  "    pm.expect(jsonData).to.have.property('job');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"leader\"\n}"
+            },
+            "url": {
+              "raw": "https://reqres.in/api/users",
+              "protocol": "https",
+              "host": ["reqres", "in"],
+              "path": ["api", "users"]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function() {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has updated data', function() {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('name');",
+                  "    pm.expect(jsonData).to.have.property('job');",
+                  "    pm.expect(jsonData).to.have.property('updatedAt');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"zion resident\"\n}"
+            },
+            "url": {
+              "raw": "https://reqres.in/api/users/2",
+              "protocol": "https",
+              "host": ["reqres", "in"],
+              "path": ["api", "users", "2"]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 204', function() {",
+                  "    pm.response.to.have.status(204);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "https://reqres.in/api/users/2",
+              "protocol": "https",
+              "host": ["reqres", "in"],
+              "path": ["api", "users", "2"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

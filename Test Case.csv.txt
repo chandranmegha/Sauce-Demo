@@ -1,0 +1,41 @@
+|TC_ID|Module|Test_Scenario|Test_Steps|Test_Data|Expected_Result
+|TC001|Login |Valid Login | 1. Open website 2. Enter username 3. Enter password 4. Click Login | username: standard_user password: secret_sauce | Redirect to Products page
+|TC002|Login |Invalid Password | 1. Open website 2. Enter username 3. Enter wrong password 4. Click Login  | username: standard_user password: wrongpass  | Error: Username and password do not match 
+|TC003|Login |Invalid Username | 1. Open website 2. Enter wrong username 3. Enter password 4. Click Login  | username: wronguser password: secret_sauce  | Error: Username and password do not match 
+|TC004|Login |Empty Username | 1. Open website 2. Leave username blank 3. Enter password 4. Click Login  | username:  password: secret_sauce  | Error: Username is required 
+|TC005|Login |Empty Password | 1. Open website 2. Enter username 3. Leave password blank 4. Click Login  | username: standard_user password:   | Error: Password is required 
+|TC006|Login |Locked Out User | 1. Open website 2. Enter locked username 3. Enter password 4. Click Login  | username: locked_out_user password: secret_sauce  | Error: User has been locked out 
+|TC007|Login |Password Masking | 1. Open website 2. Type in password field  | password: anytext  | Characters should be bullets 
+|TC008|Products |Product Count | 1. Login as standard_user  | | 6 products should be displayed 
+|TC009|Products |Product Images | 1. Login 2. Check each product image  | | All images should load 
+|TC010|Products |Product Name Click | 1. Login 2. Click product name  | | Navigate to product detail 
+|TC011|Products |Sort A to Z | 1. Login 2. Select Name (A to Z)  | | Products sorted A to Z 
+|TC012|Products |Sort Z to A | 1. Login 2. Select Name (Z to A)  | | Products sorted Z to A 
+|TC013|Products |Sort Price Low to High | 1. Login 2. Select Price (low to high)  | | Products sorted by price ascending 
+|TC014|Products |Sort Price High to Low | 1. Login 2. Select Price (high to low)  | | Products sorted by price descending 
+|TC015|Cart |Add Single Item | 1. Login 2. Click Add to cart on any product  | | Cart badge shows 1 
+|TC016|Cart |Add Multiple Items | 1. Login 2. Add 3 different items  | | Cart badge shows 3 
+|TC017|Cart |Remove from Products | 1. Login 2. Add item 3. Click Remove  | | Cart badge disappears 
+|TC018|Cart |Cart Badge Update | 1. Login 2. Add 2 items 3. Remove 1 item  | | Cart badge updates from 2 to 1 
+|TC019|Cart |Click Cart Icon | 1. Login 2. Click cart icon  | | Navigate to cart page 
+|TC020|Cart |Empty Cart Display | 1. Login 2. Go to cart without adding items  | | Show empty cart message 
+|TC021|Cart |Cart Items Display | 1. Login 2. Add Sauce Labs Backpack 3. Go to cart  | | Show correct item in cart 
+|TC022|Cart |Remove from Cart | 1. Login 2. Add item 3. Go to cart 4. Click Remove  | | Item removed from cart 
+|TC023|Cart |Continue Shopping | 1. Login 2. Go to cart 3. Click Continue Shopping  | | Return to products page 
+|TC024|Cart |Checkout Button | 1. Login 2. Add item 3. Go to cart  | | Checkout button enabled 
+|TC025|Checkout |Valid Checkout | 1. Login 2. Add item 3. Go to cart 4. Click Checkout 5. Enter details 6. Click Continue  | First: John Last: Doe Zip: 12345  | Proceed to overview 
+|TC026|Checkout |Empty First Name | 1. Login 2. Add item 3. Go to cart 4. Click Checkout 5. Leave first name empty  | First:  Last: Doe Zip: 12345  | Error: First Name required 
+|TC027|Checkout |Empty Last Name | 1. Login 2. Add item 3. Go to cart 4. Click Checkout 5. Leave last name empty  | First: John Last:  Zip: 12345  | Error: Last Name required 
+|TC028|Checkout |Empty Zip | 1. Login 2. Add item 3. Go to cart 4. Click Checkout 5. Leave zip empty  | First: John Last: Doe Zip:   | Error: Postal Code required 
+|TC029|Checkout |Special Characters | 1. Login 2. Add item 3. Go to cart 4. Click Checkout 5. Enter special chars  | First: @#$ Last: $%^ Zip: ABC  | Error : Postal code in numbers
+|TC030|Checkout |Overview Totals | 1. Login 2. Add 2 items 3. Complete info 4. Check overview  | Items: $29.99 + $9.99  | Item total: $39.98 
+|TC031|Checkout |Finish Order | 1. Complete to overview 2. Click Finish  | | Show thank you message 
+|TC032|Checkout |Cancel Overview | 1. Complete to overview 2. Click Cancel  | | Return to products 
+|TC033|Checkout |Success Message | 1. Complete order  | | Show THANK YOU FOR YOUR ORDER 
+|TC034|Checkout |Back Home | 1. Complete order 2. Click Back Home  | | Return to products 
+|TC035|Checkout |Empty Cart After Order | 1. Complete order 2. Check cart  | | Cart empty 
+|TC036|Logout |Logout Functionality | 1. Login 2. Click menu 3. Click Logout  | | Return to login page 
+|TC037|Menu |Open Menu | 1. Login 2. Click menu button  | | Menu opens 
+|TC038|Menu |About Link | 1. Login 2. Click menu 3. Click About  | | Open Sauce Labs 
+|TC039|Menu |Reset App State | 1. Login 2. Add items 3. Click menu 4. Click Reset App State  | | Cart empty | buttons reset 
+|TC040|Menu |Close Menu | 1. Login 2. Open menu 3. Click X  | | Menu closes 
